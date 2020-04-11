@@ -13,11 +13,10 @@ Press Ctrl-C on the command line or send a signal to the process to stop the
 bot.
 """
 
-
+import sys
 import random
 import re
 import logging
-import requests
 import json
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -61,7 +60,7 @@ def error(update, context):
 
 
 global initial_sentances
-initial_sentances = (list(open('/home/maria/lesson.py/sentence')))
+initial_sentances = (list(open('/home/xbot/python/sentence')))
 
 def random_line(update, context):
     s_print = random.choice(list(initial_sentances))
@@ -74,7 +73,7 @@ def random_line(update, context):
 def check_message_from_user(update, context):
     corrected_sentence = update.message.tex
     #corrected_sentence = re.sub('/check', '', update.message.text)
-    open_file = open('/home/maria/lesson.py/sentence')
+    open_file = open('/home/xbot/python/sentence')
     print(open_file)
     for line in open_file:
         if corrected_sentence in line:
@@ -100,7 +99,7 @@ def word_description(update, context):
     except:
         update.message.reply_text('The meaning of your word not found! =(')
 
-
+def main():
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
     # Make sure to set use_context=True to use the new context based callbacks
