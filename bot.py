@@ -71,7 +71,7 @@ def random_line(update, context):
     update.message.reply_text(words_complited)
 
 def check_message_from_user(update, context):
-    corrected_sentence = update.message.tex
+    corrected_sentence = update.message.text
     #corrected_sentence = re.sub('/check', '', update.message.text)
     open_file = open('/home/xbot/python/sentence')
     print(open_file)
@@ -120,7 +120,7 @@ def main():
     dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
-    dp.has_running_threadsdd_error_handler(error)
+    dp.add_error_handler(error)
 
     # Start the Bot
     updater.start_polling()
